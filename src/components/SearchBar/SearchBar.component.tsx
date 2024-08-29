@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FaScroll } from 'react-icons/fa'; 
 import "./SearchBar.css"; 
-import { Configuration, OpenAIApi } from 'openai'; 
 
 const SearchBar = (props: {onSearch: (value:string | null) => void; response: string | null; loading: boolean; setLoading: (value:boolean) => void;}) => {
 
