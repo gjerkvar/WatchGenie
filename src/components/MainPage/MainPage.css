@@ -1,0 +1,10 @@
+/* src/components/MainPage/MainPage.css */
+.main-page-container {
+    display: flex;
+    flex-direction: column; /* This aligns children vertically */
+    align-items: center; /* This centers children horizontally */
+    justify-content: center; /* This centers children vertically */
+    height: 100vh; /* Full height of the viewport */
+    background-color: #1a1a1a; /* Example background color */
+  }
+  

@@ -1,0 +1,11 @@
+/* src/components/Header.css */
+@import url('https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap');
+
+/* Header styles */
+.header-title {
+  font-family: 'Mystery Quest', cursive; /* Apply the Google Font only to this component */
+  font-size: 3rem;
+  color: #f0f0f0;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px #000;
+}
