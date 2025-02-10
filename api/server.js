@@ -8,6 +8,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
+
 app.post('/api/completions', async (req, res) => {
   const { prompt } = req.body;
 
@@ -28,6 +30,7 @@ app.post('/api/completions', async (req, res) => {
       }
     );
 
+    console.log('Received response from OpenAI:', response.data);
     res.json(response.data);
   } catch (error) {
     console.error('Error fetching data from OpenAI API:', error.response ? error.response.data : error.message);

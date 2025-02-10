@@ -3,7 +3,7 @@
 
 /* Header styles */
 .header-title {
-  font-family: 'Mystery Quest', cursive; /* Apply the Google Font only to this component */
+  font-family: 'Mystery Quest', cursive;
   font-size: 3rem;
   color: #f0f0f0;
   margin-bottom: 20px;

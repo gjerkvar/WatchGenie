@@ -12,7 +12,8 @@
       }
     ],
     "env": {
-      "NODE_OPTIONS": "--openssl-legacy-provider"
+      "NODE_OPTIONS": "--openssl-legacy-provider",
+      "OPENAI_API_KEY": "@openai_api_key"
     },
     "routes": [
       {

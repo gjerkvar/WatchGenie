@@ -4,6 +4,12 @@ import "./SearchBar.css";
 
 const SearchBar = (props: {onSearch: (value:string | null) => void; response: string | null; loading: boolean; setLoading: (value:boolean) => void;}) => {
 
+
+    console.log('API Key:', process.env.OPENAI_API_KEY, "hei");
+    console.log('Environment Variables:', process.env,"hopp");
+    console.log('porten', process.env.PORT);
+
+
     const [query, setQuery] = useState<string>('');
     
     const handleSubmit = async (event: any) => {
