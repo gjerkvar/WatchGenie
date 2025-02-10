@@ -21,7 +21,13 @@ const SearchBar = (props: {onSearch: (value:string | null) => void; response: st
             });
 
             if (!response.ok) {
-                throw new Error(`Error: ${response.statusText}`);
+                const errorData = await response.json();
+                
+                if (response.status === 429) { // Check for rate limit error
+                    throw new Error("daily limit exceeded");
+                }
+
+                throw new Error(errorData.error || 'An error occurred.');
             }
 
             const data = await response.json();
@@ -31,8 +37,8 @@ const SearchBar = (props: {onSearch: (value:string | null) => void; response: st
             props.onSearch(responseContent);
         } catch (error:any) {
             console.error('Error fetching data from your server:', error);
-            if (error.message.includes('daily limit')) {
-                props.onSearch('You have reached your daily limit of 5 requests. Try again tomorrow.');
+            if (error.message.includes('daily limit exceeded')) {
+                props.onSearch('You have reached your daily limit of 6 requests. Try again tomorrow.');
             } else {
                 props.onSearch('Sorry, something went wrong. Please try again later.');
             }

@@ -10,8 +10,9 @@ app.use(express.json());
 
 const limiter = rateLimit({
   windowMs: 24 * 60 * 60 * 1000, // 24 hours
-  max: 5, // Limit users to 5 requests per day per IP
-  message: { error: 'You have reached your daily limit of 5 requests. Try again tomorrow.' },
+  max: 5, 
+  message: { error: 'You have reached your daily limit of 6 requests. Try again tomorrow.' },
+  statusCode: 429,
   standardHeaders: true, 
   legacyHeaders: false,
 })
