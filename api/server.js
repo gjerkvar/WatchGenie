@@ -1,16 +1,13 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
-require('dotenv').config(); // To load environment variables
+require('dotenv').config();
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 
-
-
-app.post('/api/completions', async (req, res) => {
+app.post('/completions', async (req, res) => {
   const { prompt } = req.body;
 
   try {
@@ -34,8 +31,11 @@ app.post('/api/completions', async (req, res) => {
     res.json(response.data);
   } catch (error) {
     console.error('Error fetching data from OpenAI API:', error.response ? error.response.data : error.message);
-    res.status(500).send('Error fetching data from OpenAI API');
+    res.status(500).json({ error: 'Error fetching data from OpenAI API' });
   }
 });
 
-module.exports = app;
+// ✅ Fix: Use this specific Vercel export format
+module.exports = (req, res) => {
+  app(req, res);
+};
