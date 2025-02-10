@@ -19,7 +19,7 @@ const SearchBar = (props: {onSearch: (value:string | null) => void; response: st
         }
         props.setLoading(true);
         try {
-            const response = await fetch('/api/completions', {
+            const response = await fetch('/api/server', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

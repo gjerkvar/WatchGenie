@@ -13,7 +13,7 @@
   ],
   "routes": [
     {
-      "src": "/api/completions",
+      "src": "/api/server",
       "dest": "/api/server.js"
     }
   ]
