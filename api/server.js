@@ -1,13 +1,22 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.post('/api/server', async (req, res) => {
+const limiter = rateLimit({
+  windowMs: 24 * 60 * 60 * 1000, // 24 hours
+  max: 5, // Limit users to 5 requests per day per IP
+  message: { error: 'You have reached your daily limit of 5 requests. Try again tomorrow.' },
+  standardHeaders: true, 
+  legacyHeaders: false,
+})
+
+app.post('/api/server', limiter, async (req, res) => {
   const { prompt } = req.body;
 
   try {
@@ -35,7 +44,6 @@ app.post('/api/server', async (req, res) => {
   }
 });
 
-// ✅ Fix: Use this specific Vercel export format
 module.exports = (req, res) => {
   app(req, res);
 };

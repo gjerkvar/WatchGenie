@@ -3,13 +3,6 @@ import { FaScroll } from 'react-icons/fa';
 import "./SearchBar.css"; 
 
 const SearchBar = (props: {onSearch: (value:string | null) => void; response: string | null; loading: boolean; setLoading: (value:boolean) => void;}) => {
-
-
-    console.log('API Key:', process.env.OPENAI_API_KEY, "hei");
-    console.log('Environment Variables:', process.env,"hopp");
-    console.log('porten', process.env.PORT);
-
-
     const [query, setQuery] = useState<string>('');
     
     const handleSubmit = async (event: any) => {
@@ -36,9 +29,13 @@ const SearchBar = (props: {onSearch: (value:string | null) => void; response: st
             const responseContent = data.choices[0]?.message?.content || 'No valid response received';
 
             props.onSearch(responseContent);
-        } catch (error) {
+        } catch (error:any) {
             console.error('Error fetching data from your server:', error);
-            props.onSearch('Sorry, I could not fetch any watch suggestions at this time.');
+            if (error.message.includes('daily limit')) {
+                props.onSearch('You have reached your daily limit of 5 requests. Try again tomorrow.');
+            } else {
+                props.onSearch('Sorry, something went wrong. Please try again later.');
+            }
         } finally {
             props.setLoading(false); 
         }
